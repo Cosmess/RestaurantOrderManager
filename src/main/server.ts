@@ -4,11 +4,16 @@ import routes from '../presentation/routes';
 import swaggerUi from 'swagger-ui-express';
 import swaggerDocument from '../infrastructure/swagger/swagger.json';
 import sequelize from '../infrastructure/database/config/database';
+import httpLogger from '../infrastructure/middlewares/httpLogger';
+import logger from '../infrastructure/log/logger'; 
 
 dotenv.config();
 
 const app = express();
+app.disable('etag');
+
 app.use(express.json());
+app.use(httpLogger);
 
 
 app.get('/health', (req, res) => {
@@ -19,8 +24,8 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/api', routes);
 
 sequelize.sync({ alter: true }).then(() => {
-  console.log('Database synced');
+  logger.info('Database synced');
   app.listen(process.env.PORT || 3000, () => {
-    console.log(`Server running on port ${process.env.PORT}`);
+    logger.info(`Server running on port ${process.env.PORT}`);
   });
 });
