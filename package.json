@@ -5,5 +5,14 @@
   "scripts": {
     "start": "ts-node src/main/server.ts",
     "dev": "nodemon src/main/server.ts"
+  },
+  "dependencies": {
+    "dotenv": "^10",
+    "pg": "^8",
+    "sequelize": "^6"
+  },
+  "devDependencies": {
+    "ts-node": "^10",
+    "typescript": "^5"
   }
 }
