@@ -1,0 +1,9 @@
+{
+  "name": "restaurant-order-api",
+  "version": "1.0.0",
+  "main": "dist/main/server.js",
+  "scripts": {
+    "start": "ts-node src/main/server.ts",
+    "dev": "nodemon src/main/server.ts"
+  }
+}
